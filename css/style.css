@@ -1,0 +1,157 @@
+/* ============================================
+   Dany Ramadhan - Personal Branding 2026
+   Custom styles: glassmorphism, particles, animations
+   ============================================ */
+
+:root {
+  --primary: #00F5FF;
+  --secondary: #6366F1;
+  --dark: #0B0F19;
+}
+
+/* Three.js / WebGL Hero canvas */
+.hero-webgl {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero-webgl canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover;
+  transition: opacity 0.5s ease;
+}
+
+/* Glassmorphism cards */
+.glass-card {
+  background: rgba(17, 24, 39, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glass-card:hover {
+  box-shadow: 0 0 40px rgba(0, 245, 255, 0.08), 0 0 80px rgba(99, 102, 241, 0.05);
+}
+
+/* Project card hover scale */
+.project-card {
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: scale(1.02);
+}
+
+/* Skill items with progress bar (visual) */
+.skill-item {
+  position: relative;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.skill-item:last-child {
+  border-bottom: none;
+}
+
+.skill-card:hover .skill-item {
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Particle background - CSS only */
+.particle-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, rgba(0, 245, 255, 0.4), transparent),
+    radial-gradient(2px 2px at 40% 70%, rgba(99, 102, 241, 0.3), transparent),
+    radial-gradient(2px 2px at 50% 50%, rgba(0, 245, 255, 0.2), transparent),
+    radial-gradient(2px 2px at 60% 20%, rgba(99, 102, 241, 0.25), transparent),
+    radial-gradient(2px 2px at 80% 80%, rgba(0, 245, 255, 0.15), transparent);
+  background-size: 200% 200%, 180% 180%, 220% 220%, 190% 190%, 210% 210%;
+  background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%, 50% 50%;
+  animation: particleFloat 20s ease-in-out infinite;
+  pointer-events: none;
+  opacity: 0.8;
+}
+
+@keyframes particleFloat {
+  0%, 100% {
+    background-position: 0% 0%, 100% 0%, 0% 100%, 100% 100%, 50% 50%;
+    opacity: 0.8;
+  }
+  25% {
+    background-position: 10% 20%, 90% 10%, 20% 90%, 80% 80%, 55% 45%;
+    opacity: 0.9;
+  }
+  50% {
+    background-position: 20% 10%, 80% 20%, 10% 80%, 90% 70%, 45% 55%;
+    opacity: 0.7;
+  }
+  75% {
+    background-position: 5% 30%, 95% 5%, 30% 95%, 70% 90%, 50% 50%;
+    opacity: 0.85;
+  }
+}
+
+/* Subtle gradient orbs for hero */
+.particle-bg::before,
+.particle-bg::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.2;
+  pointer-events: none;
+}
+
+.particle-bg::before {
+  width: 400px;
+  height: 400px;
+  background: var(--primary);
+  top: -100px;
+  right: -100px;
+  animation: orbMove 15s ease-in-out infinite;
+}
+
+.particle-bg::after {
+  width: 300px;
+  height: 300px;
+  background: var(--secondary);
+  bottom: -50px;
+  left: -50px;
+  animation: orbMove 18s ease-in-out infinite reverse;
+}
+
+@keyframes orbMove {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(-30px, -30px) scale(1.1);
+  }
+}
+
+/* Smooth focus states for accessibility */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--primary);
+  outline-offset: 2px;
+}
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  .particle-bg,
+  .particle-bg::before,
+  .particle-bg::after {
+    animation: none;
+    opacity: 0.5;
+  }
+  .project-card:hover {
+    transform: none;
+  }
+}
